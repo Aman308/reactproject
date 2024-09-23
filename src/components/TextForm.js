@@ -51,16 +51,16 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-success my-1" onClick={handelUpClick}>
+        <button disabled={text.length===0} className="btn btn-success my-1" onClick={handelUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-success mx-1 my-1" onClick={handelDnClick}>
+        <button disabled={text.length===0} className="btn btn-success mx-1 my-1" onClick={handelDnClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-success mx-1 my-1" onClick={handelDel}>
+        <button disabled={text.length===0} className="btn btn-success mx-1 my-1" onClick={handelDel}>
           Delete All
         </button>
-        <button className="btn btn-success mx-1 my-1" onClick={handelcopy}>
+        <button disabled={text.length===0} className="btn btn-success mx-1 my-1" onClick={handelcopy}>
           Copy Text
         </button>
       </div>
@@ -69,14 +69,14 @@ export default function TextForm(props) {
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
         <p>
-          {text.split(" ").length} Word and {text.length} character
+          {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Word and {text.length} character
         </p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes to read</p>
         <h2>Preview</h2>
         <p>
           {text.length > 0
             ? text
-            : "Type something in the above box to preview it here "}
+            : "Nothing to preview "}
         </p>
       </div>
     </>
